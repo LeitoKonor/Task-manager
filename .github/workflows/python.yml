@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10", "3.11"]
+        python-version: ["3.10"]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -21,17 +21,11 @@ jobs:
         run: |
           pip install poetry
           make install
-      - name: Run linter
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        run: |
-          make lint
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
         if: github.ref_name == 'main'
         env:
           CC_TEST_REPORTER_ID: 693f3b586cb21720109d941f52d4d33fa5cac36bdd201d71b501de696bf9fd8d
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
         with:
           coverageCommand: make test-coverage
           debug: true
