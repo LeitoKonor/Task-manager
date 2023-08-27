@@ -16,7 +16,7 @@ class UserLoginView(SuccessMessageMixin, LoginView):
     template_name = 'form.html'
     form_class = AuthenticationForm
     next_page = reverse_lazy('home')
-    success_message = _('Вы вошли в систему')
+    success_message = _('Вы залогинены')
     extra_context = {
         'title': _('Login'),
         'button_text': _('Enter'),
@@ -25,8 +25,8 @@ class UserLoginView(SuccessMessageMixin, LoginView):
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy('home')
-    success_message = _('Вы вышли из системы')
+    success_message = _('Вы разлогинены')
 
     def dispatch(self, request, *args, **kwargs):
-        messages.info(request, _('Вы вышли из системы'))
+        messages.info(request, _('Вы Разлогинены'))
         return super().dispatch(request, *args, **kwargs)
