@@ -58,18 +58,13 @@ class LabelUpdateView(AuthRequiredMixin, SuccessMessageMixin, UpdateView):
 
 class LabelDeleteView(AuthRequiredMixin, DeleteProtectionMixin,
                       SuccessMessageMixin, DeleteView):
-    """
-    Delete existing label.
 
-    Authorization required.
-    If the label is associated with at least one task it cannot be deleted.
-    """
     template_name = 'labels/delete.html'
     model = Label
     success_url = reverse_lazy('labels')
-    success_message = _('Label successfully deleted')
-    protected_message = _('It is not possible to delete a label '
-                          'because it is in use')
+    success_message = _('Ярлык успешно удален.')
+    protected_message = _('Невозможно удалить ярлык, '
+                          'поскольку он уже используется')
     protected_url = reverse_lazy('labels')
     extra_context = {
         'title': _('Delete label'),

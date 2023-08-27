@@ -7,11 +7,8 @@ from django.utils.translation import gettext as _
 
 
 class AuthRequiredMixin(LoginRequiredMixin):
-    """
-    Authentication check.
-    Restricts access without authentication.
-    """
-    auth_message = _('You are not logged in! Please log in.')
+
+    auth_message = _('Вы не авторизованы! Пожалуйста, войдите.')
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -22,10 +19,7 @@ class AuthRequiredMixin(LoginRequiredMixin):
 
 
 class UserPermissionMixin(UserPassesTestMixin):
-    """
-    Authorisation check.
-    Prohibits changing an item created by another user.
-    """
+
     permission_message = None
     permission_url = None
 
@@ -38,10 +32,7 @@ class UserPermissionMixin(UserPassesTestMixin):
 
 
 class DeleteProtectionMixin:
-    """
-    Association check.
-    Prohibits deleting an object if it is used by other objects.
-    """
+
     protected_message = None
     protected_url = None
 
@@ -54,10 +45,7 @@ class DeleteProtectionMixin:
 
 
 class AuthorDeletionMixin(UserPassesTestMixin):
-    """
-    Authorisation check.
-    Prohibits deleting an item not by its author.
-    """
+
     author_message = None
     author_url = None
 
@@ -67,11 +55,3 @@ class AuthorDeletionMixin(UserPassesTestMixin):
     def handle_no_permission(self):
         messages.error(self.request, self.author_message)
         return redirect(self.author_url)
-
-    # Another way using dispatch function without UserPassesTestMixin:
-
-    # def dispatch(self, request, *args, **kwargs):
-    #     if request.user.id != self.get_object().author.id:
-    #         messages.error(self.request, self.author_message)
-    #         return redirect(self.author_url)
-    #     return super().dispatch(request, *args, **kwargs)

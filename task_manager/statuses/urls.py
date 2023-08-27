@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import StatusesListView, StatusCreateView,\
+from .views import StatusesListView, StatusCreateView, \
     StatusUpdateView, StatusDeleteView
 
 

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import LabelsListView, LabelCreateView,\
+from .views import LabelsListView, LabelCreateView, \
     LabelUpdateView, LabelDeleteView
 
 
