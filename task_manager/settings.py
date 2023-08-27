@@ -35,7 +35,7 @@ ALLOWED_HOSTS = [
     'webserver',
     '127.0.0.1',
     '0.0.0.0',
-    '.railway.app',
+    '.onrender.com',
     'localhost',
 ]
 
@@ -173,7 +173,7 @@ ROLLBAR = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://*.railway.app',
+    'https://*.onrender.com',
     'https://127.0.0.1',
     'https://localhost',
     'https://0.0.0.0',
