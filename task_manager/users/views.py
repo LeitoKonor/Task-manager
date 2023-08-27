@@ -48,8 +48,8 @@ class UserUpdateView(AuthRequiredMixin, UserPermissionMixin,
     model = User
     form_class = UserForm
     success_url = reverse_lazy('users')
-    success_message = _('Пользователь успешно обновлен')
-    permission_message = _('У вас нет прав изменить другого пользователя.')
+    success_message = _('Пользователь успешно изменен')
+    permission_message = _('У вас нет прав изменить другого пользователя')
     permission_url = reverse_lazy('users')
     extra_context = {
         'title': _('Update user'),
@@ -63,7 +63,7 @@ class UserDeleteView(AuthRequiredMixin, UserPermissionMixin,
     model = User
     success_url = reverse_lazy('users')
     success_message = _('Пользователь успешно удален')
-    permission_message = _('У вас нет прав изменить другого пользователя.')
+    permission_message = _('У вас нет прав изменить другого пользователя')
     permission_url = reverse_lazy('users')
     protected_message = _('Невозможно удалить пользователя, '
                           'потому что его используют')
