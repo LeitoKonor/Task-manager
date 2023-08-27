@@ -21,11 +21,17 @@ jobs:
         run: |
           pip install poetry
           make install
+      - name: Run tests
+        env:
+          SECRET_KEY: 'django-insecure-c-4&jw)y%@+pum0qr@^9(9liz-mq!lt+^16nyl&x+ucc22q7xw'
+        run: |
+          make test
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
         if: github.ref_name == 'main'
         env:
           CC_TEST_REPORTER_ID: 693f3b586cb21720109d941f52d4d33fa5cac36bdd201d71b501de696bf9fd8d
+          SECRET_KEY: 'django-insecure-c-4&jw)y%@+pum0qr@^9(9liz-mq!lt+^16nyl&x+ucc22q7xw'
         with:
           coverageCommand: make test-coverage
           debug: true
