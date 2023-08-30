@@ -1,0 +1,4 @@
+[run]
+include = task_manager/*
+omit = task_manager/settings.py
+
