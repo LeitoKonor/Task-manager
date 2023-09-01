@@ -37,4 +37,4 @@ make install
 
 make migrate
 
-make start
+make dev
